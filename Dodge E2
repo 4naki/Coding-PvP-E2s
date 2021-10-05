@@ -1,0 +1,100 @@
+@name Dodge
+@inputs EGP:wirelink
+@persist MaxiumDodgeCount Amount UnlimitedUse X Y Z DodgeForce 
+runOnKeys(owner(),1)
+interval(60)
+W=egpScrW(owner())
+H=egpScrH(owner())
+if(first()){
+    holoCreate(1001)
+    holoAlpha(1001,0)
+    holoPos(1001,owner():pos())
+    holoAng(1001,ang(0,0,0))
+    
+    MaxiumDodgeCount=3
+    DodgeForce=225
+    
+    UnlimitedUse=0
+    
+    Amount=MaxiumDodgeCount
+    timer("dodgerefresh",100)
+}
+if(owner():keyForward()==1){
+    X=DodgeForce*75
+}
+if(owner():keyForward()==0){
+    if(owner():keyBack()==1){
+        X=-DodgeForce*75
+    }
+    if(owner():keyBack()==0){
+        X=0
+    }
+}
+
+
+if(owner():keyRight()==1){
+    Y=-DodgeForce*75
+}
+if(owner():keyRight()==0){
+    if(owner():keyLeft()==1){
+        Y=DodgeForce*75
+    }
+    if(owner():keyLeft()==0){
+        Y=0
+    }
+}
+
+
+if(owner():keyPressed("space")==1){
+    Z=DodgeForce*0.01
+}
+if(owner():keyPressed("space")==0){
+    if(owner():keyDuck()==1){
+        Z=-DodgeForce*0.01
+    }
+    if(owner():keyDuck()==0){
+        Z=0
+    }
+}
+
+holoPos(1001,owner():toWorld(vec(X,Y,Z)))
+#if(owner():weapon():type()=="none"){
+if(owner():isCrouch()==0){
+if(changed(owner():keyPressed("mouse_5"))&owner():keyPressed("mouse_5")){
+    if(abs(X)>0|abs(Y)>0|abs(Z)>0){
+    if(Amount>0){
+        Amount=Amount-!UnlimitedUse
+        timer("add2",3000+((175+(DodgeForce*0.7))*(MaxiumDodgeCount*2.25)))
+        stoptimer("add")
+        owner():plyApplyForce(-(owner():pos()-holoEntity(1001):pos()):normalized()*550)
+        owner():soundPlay("boostallow",0,"items/medshot4.wav")
+    }else{
+        owner():soundPlay("boostunallow",0,"items/medshotno1.wav")
+    }
+    }
+}
+}
+#}
+if(clk("add2")){
+    timer("add",100)
+}
+if(clk("add")){
+if(Amount<MaxiumDodgeCount){
+    Amount=Amount+1
+    owner():soundPlay("added",0,"hl1/fvox/beep.wav")
+}else{
+    stoptimer("add")
+}
+    timer("add",200+((115+(DodgeForce*0.7))*(MaxiumDodgeCount*2.25)))
+}
+
+for(Val=0,MaxiumDodgeCount){
+    
+}
+
+if(changed(Amount)){
+    timer("dodgerefresh",100)
+}
+if(clk("dodgerefresh")){
+    EGP:egpText(2,"Dodges Left: "+Amount,vec2(-550+W/2,190+H/2))
+}
