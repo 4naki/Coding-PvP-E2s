@@ -3,6 +3,7 @@
 @persist W H A SizeW SizeH Kills KillStreak
 runOnKeys(owner(),1)
 runOnDeath(1)
+interval(100)
 W=egpScrW(owner())
 H=egpScrH(owner())
 
