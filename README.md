@@ -10,6 +10,8 @@ Slide E2 - Adds a basic slide feature, run and crouch when you want to slide
 
 Combat Stims E2 - Adds some fancy stims that can give you health and armor, both amounts are customizable, altho you can't separate them without creating another e2, same as with the dodge,
 the more health or armor it gives the longer getting the stims back takes same for the max amount of stims you can have if increased
+when you click H it will use a stim btw.
+
 
 Ehanced Combat Hud E2 - This nice thing adds a simple hud with custom crosshair (crosshair 0 to disable default crosshair), not only that it shows info of the latest enemy you have gotten to your sights such as
 name, health, armor and weapon. this information will stay until you find a new target to look at. Crosshair changes color depending if target has godmode on, Red means no god, Green means god is on, White is the default color
