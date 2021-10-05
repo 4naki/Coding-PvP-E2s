@@ -17,10 +17,10 @@ if(changed(owner():keyPressed("g"))&owner():keyPressed("g")){
 }
 if(changed(A)){
     if(A==1){
-        #BloodVision
+        #NightVision
         concmd("pp_colormod 1; pp_colormod_addb 45; pp_colormod_addg 42; pp_colormod_addr 0; pp_colormod_brightness -0.10; pp_colormod_color 50; pp_colormod_contrast 0.02; pp_colormod_mulb 255; pp_colormod_mulg 14; pp_colormod_mulr 0")
         concmd("flir_enable 0")
-        EGP:egpText(17,"Enhanced Bio Statistics",vec2(-85+W/2,-300+H/2))
+        EGP:egpText(17,"Night Vision",vec2(-50+W/2,-300+H/2))
     }elseif(A==2){
         #Flir
         concmd("pp_colormod 0")
