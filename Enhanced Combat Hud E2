@@ -2,6 +2,7 @@
 @inputs EGP:wirelink
 @persist W H A SizeW SizeH Kills KillStreak
 runOnKeys(owner(),1)
+runOnDeath(1)
 W=egpScrW(owner())
 H=egpScrH(owner())
 
