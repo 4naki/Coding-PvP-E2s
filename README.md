@@ -18,3 +18,5 @@ right bottom shows the gun you are using. if you press G you can cycle through 2
 
 noteably, requires wire_expression2_concmd 1
 you can wire the last 3 e2s into a same EGP Hud
+
+for the combat hud i am working on a killstreak feature, it also counts kills all together
