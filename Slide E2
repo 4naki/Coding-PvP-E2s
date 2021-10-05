@@ -28,3 +28,6 @@ if(IsSliding==1){
         IsSliding=0
     }
 }
+if(dupefinished()){
+    reset()
+}
