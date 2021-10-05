@@ -1,0 +1,30 @@
+@name Slide
+@persist IsSliding
+runOnKeys(owner(),1)
+interval(60)
+#Slide
+if(owner():isOnGround()){
+if(owner():keySprint()){
+    if(owner():isCrouch()){
+        owner():plyApplyForce(vec(owner():vel():x()*0.575,owner():vel():y()*0.575,0))
+    }
+}
+if(owner():isCrouch()){
+if(changed(owner():keySprint())){
+    if(owner():keySprint()){
+        owner():soundPlay("slide",0,"physics/body/body_medium_scrape_rough_loop1.wav")
+        IsSliding=1
+    }
+}
+}
+}
+if(IsSliding==1){
+    if(!owner():isCrouch()){
+        owner():soundPlay("slide",0,"")
+        IsSliding=0
+    }
+    if(!(owner():keySprint())){
+        owner():soundPlay("slide",0,"")
+        IsSliding=0
+    }
+}
