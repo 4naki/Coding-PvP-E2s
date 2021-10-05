@@ -1,0 +1,63 @@
+@name Combat Stims
+@inputs EGP:wirelink
+@persist HealAmount MaxHealth MaxStimAmount StimAmount MaxArmor ArmorAmount
+runOnKeys(owner(),1)
+W=egpScrW(owner())
+H=egpScrH(owner())
+if(first()){
+    MaxHealth=200
+    HealAmount=15
+    
+    MaxArmor=100
+    ArmorAmount=8
+    
+    MaxStimAmount=4
+    
+    StimAmount=MaxStimAmount
+    timer("stimrefresh",100)
+}
+if(keyClk()){
+    if(owner():keyPressed("h")){
+        if(StimAmount>0){
+            owner():soundPlay("stim",0,"")
+            owner():plySetHealth(owner():health()+HealAmount)
+            owner():plySetArmor(owner():armor()+ArmorAmount)
+            StimAmount=StimAmount-1
+            
+            timer("add2",8000+((175+(HealAmount*10))*(MaxStimAmount*5))+((0+(ArmorAmount*10))))
+            stoptimer("add")
+            
+            owner():soundPlay("heal",0,"items/smallmedkit1.wav")
+        }else{
+            owner():soundPlay("outofstims",0,")weapons/357/357_reload1.wav")
+        }
+    }
+}
+
+
+if(clk("add2")){
+    timer("add",100)
+}
+if(clk("add")){
+if(StimAmount<MaxStimAmount){
+    StimAmount=StimAmount+1
+    owner():soundPlay("added",0,"items/medshot4.wav")
+}else{
+    stoptimer("add")
+}
+    timer("add",1000+((175+(HealAmount*7.5))*(MaxStimAmount*5))+((0+(ArmorAmount*10))))
+}
+
+if(owner():armor()>MaxArmor){
+    owner():plySetArmor(MaxArmor)
+}
+if(owner():armor()>MaxHealth){
+    owner():plySetHealth(MaxHealth)
+}
+
+if(changed(StimAmount)){
+    timer("stimrefresh",100)
+}
+if(clk("stimrefresh")){
+    EGP:egpText(1,"Stims Left: "+StimAmount,vec2(-550+W/2,215+H/2))
+}
