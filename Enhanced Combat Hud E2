@@ -1,0 +1,156 @@
+@name Enhanced Combat Hud
+@inputs EGP:wirelink
+@persist W H A SizeW SizeH Kills KillStreak
+runOnKeys(owner(),1)
+W=egpScrW(owner())
+H=egpScrH(owner())
+
+if(changed(owner():keyPressed("g"))&owner():keyPressed("g")){
+    if(A==1){
+        A=2   #BloodVision
+    }elseif(A==2){
+        A=0   #Flir
+    }elseif(A==0){
+        A=1   #Clear
+    }
+}
+if(changed(A)){
+    if(A==1){
+        #BloodVision
+        concmd("pp_colormod 1; pp_colormod_addb 45; pp_colormod_addg 42; pp_colormod_addr 0; pp_colormod_brightness -0.10; pp_colormod_color 50; pp_colormod_contrast 0.02; pp_colormod_mulb 255; pp_colormod_mulg 14; pp_colormod_mulr 0")
+        concmd("flir_enable 0")
+        EGP:egpText(17,"Enhanced Bio Statistics",vec2(-85+W/2,-300+H/2))
+    }elseif(A==2){
+        #Flir
+        concmd("pp_colormod 0")
+        concmd("flir_enable 1")
+        EGP:egpText(17,"Thermal Filtering",vec2(-65+W/2,-300+H/2))
+    }elseif(A==0){
+        #Clear
+        concmd("pp_colormod 0")
+        concmd("flir_enable 0")
+        EGP:egpText(17,"",vec2(0+W/2,-300+H/2))
+    }
+}
+
+if(first()){
+    SizeW=3*0.8
+    SizeH=1.75*0.8
+    
+    EGP:egpLine(3,vec2(110*(SizeW)+W/2,230*(SizeH)+H/2),vec2(240*(SizeW)+W/2,200*(SizeH)+H/2))
+    EGP:egpSize(3,5)
+    
+    EGP:egpLine(4,vec2(-110*(SizeW)+W/2,230*(SizeH)+H/2),vec2(-240*(SizeW)+W/2,200*(SizeH)+H/2))
+    EGP:egpSize(4,5)
+    
+    EGP:egpLine(5,vec2(110*(SizeW)+W/2,-230*(SizeH)+H/2),vec2(240*(SizeW)+W/2,-200*(SizeH)+H/2))
+    EGP:egpSize(5,5)
+    
+    EGP:egpLine(6,vec2(-110*(SizeW)+W/2,-230*(SizeH)+H/2),vec2(-240*(SizeW)+W/2,-200*(SizeH)+H/2))
+    EGP:egpSize(6,5)
+    
+    EGP:egpLine(7,vec2(-240*(SizeW)+W/2,-202*(SizeH)+H/2),vec2(-240*(SizeW)+W/2,-70*(SizeH)+H/2))
+    EGP:egpSize(7,2)
+    
+    EGP:egpLine(8,vec2(240*(SizeW)+W/2,-202*(SizeH)+H/2),vec2(240*(SizeW)+W/2,-70*(SizeH)+H/2))
+    EGP:egpSize(8,2)
+    
+    EGP:egpLine(9,vec2(-240*(SizeW)+W/2,202*(SizeH)+H/2),vec2(-240*(SizeW)+W/2,70*(SizeH)+H/2))
+    EGP:egpSize(9,2)
+    
+    EGP:egpLine(10,vec2(240*(SizeW)+W/2,202*(SizeH)+H/2),vec2(240*(SizeW)+W/2,70*(SizeH)+H/2))
+    EGP:egpSize(10,2)
+    
+    EGP:egpLine(11,vec2(0+W/2,-20+H/2),vec2(0+W/2,20+H/2))
+    EGP:egpSize(11,1)
+    
+    EGP:egpLine(12,vec2(-20+W/2,0+H/2),vec2(20+W/2,0+H/2))
+    EGP:egpSize(12,1)
+    
+    EGP:egpLine(19,vec2(-120+W/2,-275+H/2),vec2(120+W/2,-275+H/2))
+    EGP:egpSize(19,3.5)
+    
+    EGP:egpLine(20,vec2(-120+W/2,-275+H/2),vec2(-160+W/2,-315+H/2))
+    EGP:egpSize(20,3.5)
+    
+    EGP:egpLine(21,vec2(120+W/2,-275+H/2),vec2(160+W/2,-315+H/2))
+    EGP:egpSize(21,3.5)
+    
+    EGP:egpLine(22,vec2(-95+W/2,-305+H/2),vec2(95+W/2,-305+H/2))
+    EGP:egpSize(22,3)
+    
+    EGP:egpLine(23,vec2(-100+W/2,275+H/2),vec2(100+W/2,275+H/2))
+    EGP:egpSize(23,3.5)
+    
+    EGP:egpLine(24,vec2(-100+W/2,275+H/2),vec2(-130+W/2,320+H/2))
+    EGP:egpSize(24,3.5)
+    
+    EGP:egpLine(25,vec2(100+W/2,275+H/2),vec2(130+W/2,320+H/2))
+    EGP:egpSize(25,3.5)    
+    
+    EGP:egpText(13,"Player: "+"",vec2(-550+W/2,-215-25+H/2))
+    EGP:egpText(14,"Health: "+"0",vec2(-550+W/2,-190-25+H/2))
+    EGP:egpText(15,"Armor: "+"0",vec2(-550+W/2,-165-25+H/2))
+    EGP:egpText(16,"Weapon: "+"",vec2(-550+W/2,-140-25+H/2))
+}
+
+if(owner():aimEntity():isPlayer()){
+    
+    EGP:egpText(13,"Player: "+owner():aimEntity():name(),vec2(-550+W/2,-215-25+H/2))
+    EGP:egpText(14,"Health: "+owner():aimEntity():health(),vec2(-550+W/2,-190-25+H/2))
+    EGP:egpText(15,"Armor: "+owner():aimEntity():armor(),vec2(-550+W/2,-165-25+H/2))
+    EGP:egpText(16,"Weapon: "+owner():aimEntity():weapon():type(),vec2(-550+W/2,-140-25+H/2))
+    
+    if(owner():aimEntity():plyHasGod()){
+        EGP:egpColor(11, vec(0,255,0))
+        EGP:egpColor(12, vec(0,255,0))
+    }else{
+        EGP:egpColor(11, vec(255,0,0))
+        EGP:egpColor(12, vec(255,0,0))
+    }
+}else{
+    EGP:egpColor(11, vec(255,255,255))
+    EGP:egpColor(12, vec(255,255,255))
+}
+
+if(!(owner():aimEntity())){
+    EGP:egpColor(11, vec(255,255,255))
+    EGP:egpColor(12, vec(255,255,255))
+}
+
+if(changed(owner():weapon())){
+    if(owner():weapon():type()=="none"){
+        EGP:egpText(18,"",vec2(300+W/2,215+H/2))
+    }else{
+        EGP:egpText(18,owner():weapon():type(),vec2(300+W/2,215+H/2))
+    }
+}
+
+if(deathClk()){
+if(lastDeathVictim()==owner()){
+    hint("You got killed by: "+lastDeathAttacker():name()+" with gun: "+lastDeathAttacker():weapon():type(),3500)
+    KillStreak=0
+}
+if(lastDeathAttacker()==owner()){
+    Kills=Kills+1
+    KillStreak=KillStreak+1
+    if(KillStreak==5){
+        hint("5 Kill KillStreak!",3500)
+    }
+    if(KillStreak==15){
+        hint("15 Kill KillStreak!",3500)
+    }
+    if(KillStreak==30){
+        hint("30 Kill KillStreak!",3500)
+    }
+    if(KillStreak==60){
+        hint("60 Kill KillStreak!",3500)
+    }
+    if(KillStreak==120){
+        hint("120 Kill KillStreak!",3500)
+    }
+    if(KillStreak==150){
+        hint("150 Kill KillStreak!",3500)
+    }
+}
+}
