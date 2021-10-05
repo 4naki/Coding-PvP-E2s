@@ -94,6 +94,8 @@ if(first()){
     EGP:egpText(14,"Health: "+"0",vec2(-550+W/2,-190-25+H/2))
     EGP:egpText(15,"Armor: "+"0",vec2(-550+W/2,-165-25+H/2))
     EGP:egpText(16,"Weapon: "+"",vec2(-550+W/2,-140-25+H/2))
+    
+    timer("refreshkills",100)
 }
 
 if(owner():aimEntity():isPlayer()){
@@ -154,16 +156,25 @@ if(lastDeathAttacker()==owner()){
     if(KillStreak==150){
         hint("150 Kill KillStreak!",3500)
     }
+    timer("refreshkills",100)
 }
 }
-
+if(clk("refreshkills")){
+    EGP:egpText(28,"Kills: "+Kills,vec2(-115+W/2,-265+H/2))
+    EGP:egpText(29,"Current Streak: "+KillStreak,vec2(-25+W/2,-265+H/2))
+}
 if(owner():keyAttack2()){
     EGP:egpAlpha(11,0)
     EGP:egpAlpha(12,0)
     EGP:egpText(26,(round(owner():shootPos():distance(owner():aimPos())/52)):toString()+"m",vec2(50+W/2,-8+H/2))
+    EGP:egpText(27,owner():weapon():clip1()+" in Mag",vec2(50+W/2,-8+25+H/2))
 }
 if(!owner():keyAttack2()){
     EGP:egpAlpha(11,255)
     EGP:egpAlpha(12,255)
     EGP:egpText(26,"",vec2(50+W/2,-8+H/2))
+    EGP:egpText(27,owner():weapon():clip1()+" in Mag",vec2(300+W/2,230+H/2))
+}
+if(dupefinished()){
+    reset()
 }
