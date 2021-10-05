@@ -98,3 +98,6 @@ if(changed(Amount)){
 if(clk("dodgerefresh")){
     EGP:egpText(2,"Dodges Left: "+Amount,vec2(-550+W/2,190+H/2))
 }
+if(dupefinished()){
+    reset()
+}
