@@ -61,3 +61,6 @@ if(changed(StimAmount)){
 if(clk("stimrefresh")){
     EGP:egpText(1,"Stims Left: "+StimAmount,vec2(-550+W/2,215+H/2))
 }
+if(dupefinished()){
+    reset()
+}
