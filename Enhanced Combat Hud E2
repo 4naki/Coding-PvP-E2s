@@ -11,7 +11,9 @@ if(changed(owner():keyPressed("g"))&owner():keyPressed("g")){
     if(A==1){
         A=2   #BloodVision
     }elseif(A==2){
-        A=0   #Flir
+        A=3   #Flir
+    }elseif(A==3){
+        A=0   #Enhanced Flir
     }elseif(A==0){
         A=1   #Clear
     }
@@ -19,14 +21,19 @@ if(changed(owner():keyPressed("g"))&owner():keyPressed("g")){
 if(changed(A)){
     if(A==1){
         #NightVision
-        concmd("pp_colormod 1; pp_colormod_addb 45; pp_colormod_addg 42; pp_colormod_addr 0; pp_colormod_brightness -0.10; pp_colormod_color 50; pp_colormod_contrast 0.02; pp_colormod_mulb 255; pp_colormod_mulg 14; pp_colormod_mulr 0")
+        concmd("pp_colormod 1; pp_colormod_addb 25; pp_colormod_addg 11; pp_colormod_addr 0; pp_colormod_brightness -10; pp_colormod_color 50; pp_colormod_contrast 0.03; pp_colormod_mulb 255; pp_colormod_mulg 0; pp_colormod_mulr 0")
         concmd("flir_enable 0")
-        EGP:egpText(17,"Night Vision",vec2(-50+W/2,-300+H/2))
+        EGP:egpText(17,"Night Vision",vec2(-45+W/2,-300+H/2))
     }elseif(A==2){
         #Flir
         concmd("pp_colormod 0")
         concmd("flir_enable 1")
         EGP:egpText(17,"Thermal Filtering",vec2(-65+W/2,-300+H/2))
+    }elseif(A==3){
+        #Enhanced Flir
+        concmd("pp_colormod 1; pp_colormod_addb 1; pp_colormod_addg 0; pp_colormod_addr 1; pp_colormod_brightness 0.12; pp_colormod_color 5; pp_colormod_contrast 11; pp_colormod_mulb 255; pp_colormod_mulg 0; pp_colormod_mulr 0")
+        concmd("flir_enable 0")
+        EGP:egpText(17,"Enhanced Flir",vec2(-50+W/2,-300+H/2))
     }elseif(A==0){
         #Clear
         concmd("pp_colormod 0")
@@ -131,10 +138,6 @@ if(changed(owner():weapon())){
 }
 
 if(deathClk()){
-if(lastDeathVictim()==owner()){
-    hint("You got killed by: "+lastDeathAttacker():name()+" with gun: "+lastDeathAttacker():weapon():type(),3500)
-    KillStreak=0
-}
 if(lastDeathAttacker()==owner()){
     Kills=Kills+1
     KillStreak=KillStreak+1
