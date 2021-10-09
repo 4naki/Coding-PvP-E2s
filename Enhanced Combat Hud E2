@@ -161,6 +161,10 @@ if(lastDeathAttacker()==owner()){
     }
     timer("refreshkills",100)
 }
+if(lastDeathVictim()==owner()){
+    hint("KillStreak Lost!",3500)
+    KillStreak=0
+}
 }
 if(clk("refreshkills")){
     EGP:egpText(28,"Kills: "+Kills,vec2(-115+W/2,-265+H/2))
