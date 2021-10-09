@@ -185,3 +185,17 @@ if(!owner():keyAttack2()){
 if(dupefinished()){
     reset()
 }
+if(changed(convarnum("sbox_playershurtplayers"))){
+    if(convarnum("sbox_playershurtplayers")==0){
+        Color=vec(255,0,0)
+    }else{
+        Color=vec(0,255,255)
+    }
+    for(I=1,27){
+        if(!(I==11)){
+            if(!(I==12)){
+                EGP:egpColor(I,Color)
+            }
+        }
+    }
+}
