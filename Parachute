@@ -1,5 +1,5 @@
 @name Parachute
-@persist Ready
+@persist Ready Parachute
 interval(60)
 if(first()){
     
@@ -127,23 +127,45 @@ if(first()){
     holoMaterial(14,"models/debug/debugwhite")
     holoColor(14,vec(35,35,35))
     holoScale(14,vec(2,2,1))
+    
+    owner():soundPlay("wind",0,"vehicles/fast_windloop1.wav")
+    soundVolume("wind",0)
+    soundPitch("wind",0)
 }
 if(changed(owner():isOnGround())){
     if(!owner():isOnGround()){
-        timer("ready",2000)
+        timer("ready",1000)
     }else{
         stoptimer("ready")
         Ready=0
+        if(Parachute){
+            Parachute=0
+        }
     }
 }
-holoAng(1,owner():toWorld(ang(owner():velL():x()*0.005,0,0)))
+if(Ready){
+    if(changed(owner():keyPressed("c"))&owner():keyPressed("c")){
+        Parachute=!Parachute
+    }
+}
+if(changed(Parachute)){
+    if(Parachute){
+        if(Ready){
+            owner():soundPlay("sfx",0,"npc/combine_soldier/zipline_clothing1.wav")
+        }
+    }else{
+        if(!owner():isOnGround()){
+            owner():soundPlay("off",0,"npc/combine_soldier/zipline_clip1.wav")
+        }else{
+            owner():soundPlay("off",0,"npc/combine_soldier/zipline_hitground1.wav")
+        }
+    }
+}
+holoAng(1,owner():toWorld(ang(owner():velL():x()*0.01,0,0)))
 if(!owner():isOnGround()){
     if(Ready){
-        if(changed(owner():keyPressed("space"))&owner():keyPressed("space")){
-                owner():soundPlay("sfx",0,"npc/combine_soldier/zipline_clothing1.wav")
-        }
-        if(owner():keyPressed("space")){
-            owner():plyApplyForce((owner():forward()*15)*owner():keyForward()+vec(0,0,0-owner():vel():z()*0.1))
+        if(Parachute){
+            owner():plyApplyForce((owner():forward()*15)*owner():keyForward()+vec(0,0,-owner():velL():x()*0.005-owner():vel():z()*0.15))
             for(I=2,14){
                 holoAlpha(I,255)
             }
@@ -165,3 +187,5 @@ if(!owner():isOnGround()){
 if(clk("ready")){
     Ready=1
 }
+soundVolume("wind",Parachute*(owner():vel():length()*0.0007))
+soundPitch("wind",80+(owner():vel():length()*0.08))
