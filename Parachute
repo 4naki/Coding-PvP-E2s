@@ -190,16 +190,3 @@ if(clk("ready")){
 soundVolume("wind",Parachute*(owner():vel():length()*0.0007))
 soundPitch("wind",80+(owner():vel():length()*0.08))
 
-if(changed(owner():isAlive())&owner():isAlive()){
-    timer("respawn",100)
-}
-if(clk("respawn")){
-    Pos=vec(randint(-12000,12000),randint(-12000,12000),3000+randint(-1500,100))
-    Ranger=rangerOffset(100,Pos,vec(0,0,1))
-    if(Ranger:hitWorld()){
-        timer("respawn",100)
-    }
-    if(!Ranger:hitWorld()){
-        owner():plySetPos(Pos)
-    }
-}
