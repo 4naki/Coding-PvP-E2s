@@ -1,0 +1,211 @@
+@name Parachute Respawn
+@persist Ready Parachute Pos:vector Ranger:ranger Wait
+interval(60)
+if(first()){
+    
+    HeightOffset=-30
+    
+    holoCreate(1)
+    holoPos(1,owner():toWorld(vec(0,0,50)))
+    holoAng(1,owner():toWorld(ang(0,0,0)))
+    holoParent(1,owner())
+    holoAlpha(1,0)
+    
+    holoCreate(2)
+    holoPos(2,holoEntity(1):toWorld(vec(0,0,175+HeightOffset)))
+    holoAng(2,holoEntity(1):toWorld(ang(0,0,180)))
+    holoParent(2,holoEntity(1))
+    holoModel(2,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(2,"models/debug/debugwhite")
+    holoColor(2,vec(55,55,55))
+    holoScale(2,vec(4,2,5))
+    
+    holoCreate(3)
+    holoPos(3,holoEntity(1):toWorld(vec(0,20,174.5+HeightOffset)))
+    holoAng(3,holoEntity(1):toWorld(ang(0,0,175)))
+    holoParent(3,holoEntity(1))
+    holoModel(3,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(3,"models/debug/debugwhite")
+    holoColor(3,vec(55,55,55))
+    holoScale(3,vec(3.9,2,5))
+    
+    holoCreate(4)
+    holoPos(4,holoEntity(1):toWorld(vec(0,-20,174.5+HeightOffset)))
+    holoAng(4,holoEntity(1):toWorld(ang(0,180,175)))
+    holoParent(4,holoEntity(1))
+    holoModel(4,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(4,"models/debug/debugwhite")
+    holoColor(4,vec(55,55,55))
+    holoScale(4,vec(3.9,2,5))
+    
+    holoCreate(5)
+    holoPos(5,holoEntity(1):toWorld(vec(0,40,172+HeightOffset)))
+    holoAng(5,holoEntity(1):toWorld(ang(0,0,170)))
+    holoParent(5,holoEntity(1))
+    holoModel(5,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(5,"models/debug/debugwhite")
+    holoColor(5,vec(55,55,55))
+    holoScale(5,vec(3.8,2,5))
+    
+    holoCreate(6)
+    holoPos(6,holoEntity(1):toWorld(vec(0,-40,172+HeightOffset)))
+    holoAng(6,holoEntity(1):toWorld(ang(0,180,170)))
+    holoParent(6,holoEntity(1))
+    holoModel(6,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(6,"models/debug/debugwhite")
+    holoColor(6,vec(55,55,55))
+    holoScale(6,vec(3.8,2,5))
+    
+    holoCreate(7)
+    holoPos(7,holoEntity(1):toWorld(vec(0,60,167.5+HeightOffset)))
+    holoAng(7,holoEntity(1):toWorld(ang(0,0,165)))
+    holoParent(7,holoEntity(1))
+    holoModel(7,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(7,"models/debug/debugwhite")
+    holoColor(7,vec(55,55,55))
+    holoScale(7,vec(3.6,2,5))
+    
+    holoCreate(8)
+    holoPos(8,holoEntity(1):toWorld(vec(0,-60,167.5+HeightOffset)))
+    holoAng(8,holoEntity(1):toWorld(ang(0,180,165)))
+    holoParent(8,holoEntity(1))
+    holoModel(8,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(8,"models/debug/debugwhite")
+    holoColor(8,vec(55,55,55))
+    holoScale(8,vec(3.6,2,5))
+    
+    holoCreate(9)
+    holoPos(9,holoEntity(1):toWorld(vec(0,80,159+HeightOffset)))
+    holoAng(9,holoEntity(1):toWorld(ang(0,0,150)))
+    holoParent(9,holoEntity(1))
+    holoModel(9,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(9,"models/debug/debugwhite")
+    holoColor(9,vec(55,55,55))
+    holoScale(9,vec(3.3,2,5))
+    
+    holoCreate(10)
+    holoPos(10,holoEntity(1):toWorld(vec(0,-80,159+HeightOffset)))
+    holoAng(10,holoEntity(1):toWorld(ang(0,180,150)))
+    holoParent(10,holoEntity(1))
+    holoModel(10,"models/props_c17/playground_swingset_seat01a.mdl")
+    holoMaterial(10,"models/debug/debugwhite")
+    holoColor(10,vec(55,55,55))
+    holoScale(10,vec(3.3,2,5))
+    
+    holoCreate(11)
+    holoPos(11,holoEntity(1):toWorld(vec(22,-40,85+HeightOffset)))
+    holoAng(11,holoEntity(1):toWorld(ang(25,0,30)))
+    holoParent(11,holoEntity(1))
+    holoModel(11,"models/sprops/cylinders/size_1/cylinder_1_5x144.mdl")
+    holoMaterial(11,"models/debug/debugwhite")
+    holoColor(11,vec(35,35,35))
+    holoScale(11,vec(2,2,1))
+    
+    holoCreate(12)
+    holoPos(12,holoEntity(1):toWorld(vec(-22,-40,85+HeightOffset)))
+    holoAng(12,holoEntity(1):toWorld(ang(-25,0,30)))
+    holoParent(12,holoEntity(1))
+    holoModel(12,"models/sprops/cylinders/size_1/cylinder_1_5x144.mdl")
+    holoMaterial(12,"models/debug/debugwhite")
+    holoColor(12,vec(35,35,35))
+    holoScale(12,vec(2,2,1))
+    
+    holoCreate(13)
+    holoPos(13,holoEntity(1):toWorld(vec(22,40,85+HeightOffset)))
+    holoAng(13,holoEntity(1):toWorld(ang(25,0,-30)))
+    holoParent(13,holoEntity(1))
+    holoModel(13,"models/sprops/cylinders/size_1/cylinder_1_5x144.mdl")
+    holoMaterial(13,"models/debug/debugwhite")
+    holoColor(13,vec(35,35,35))
+    holoScale(13,vec(2,2,1))
+    
+    holoCreate(14)
+    holoPos(14,holoEntity(1):toWorld(vec(-22,40,85+HeightOffset)))
+    holoAng(14,holoEntity(1):toWorld(ang(-25,0,-30)))
+    holoParent(14,holoEntity(1))
+    holoModel(14,"models/sprops/cylinders/size_1/cylinder_1_5x144.mdl")
+    holoMaterial(14,"models/debug/debugwhite")
+    holoColor(14,vec(35,35,35))
+    holoScale(14,vec(2,2,1))
+    
+    owner():soundPlay("wind",0,"vehicles/fast_windloop1.wav")
+    soundVolume("wind",0)
+    soundPitch("wind",0)
+    timer("wait",1000)
+}
+if(changed(owner():isOnGround())){
+    if(!owner():isOnGround()){
+        timer("ready",1000)
+    }else{
+        stoptimer("ready")
+        Ready=0
+        if(Parachute){
+            Parachute=0
+        }
+    }
+}
+ParachuteBind=owner():keyPressed("c")
+if(Ready){
+    if(changed(ParachuteBind)&ParachuteBind){
+        Parachute=!Parachute
+    }
+}
+if(changed(Parachute)){
+    if(Parachute){
+        if(Ready){
+            owner():soundPlay("sfx",0,"npc/combine_soldier/zipline_clothing1.wav")
+        }
+    }else{
+        if(!owner():isOnGround()){
+            owner():soundPlay("off",0,"npc/combine_soldier/zipline_clip1.wav")
+        }else{
+            owner():soundPlay("off",0,"npc/combine_soldier/zipline_hitground1.wav")
+        }
+    }
+}
+holoAng(1,owner():toWorld(ang(owner():velL():x()*0.01,0,0)))
+if(!owner():isOnGround()){
+    if(Ready){
+        if(Parachute){
+            owner():plyApplyForce((owner():forward()*15)*owner():keyForward()+vec(0,0,-owner():velL():x()*0.005-owner():vel():z()*0.15))
+            for(I=2,14){
+                holoAlpha(I,255)
+            }
+        }else{
+            for(I=2,14){
+                holoAlpha(I,0)
+            }
+        }
+    }else{
+        for(I=2,14){
+            holoAlpha(I,0)
+        }
+    }
+}else{
+    for(I=2,14){
+        holoAlpha(I,0)
+    }
+}
+if(clk("ready")){
+    Ready=1
+}
+soundVolume("wind",Parachute*(owner():vel():length()*0.0007))
+soundPitch("wind",80+(owner():vel():length()*0.08))
+if(clk("wait")){
+    Wait=1
+}
+if(changed(owner():isAlive())&owner():isAlive()){
+    timer("respawn",100)
+}
+if(Wait){
+if(clk("respawn")){
+    Pos=vec(randint(-12000,12000),randint(-12000,12000),3000+randint(-1500,100))
+    Ranger=rangerOffset(100,Pos,vec(0,0,1))
+    if(Ranger:hitWorld()){
+        timer("respawn",100)
+    }
+    if(!Ranger:hitWorld()){
+        owner():plySetPos(Pos)
+    }
+}
+}
