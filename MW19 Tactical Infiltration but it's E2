@@ -1,0 +1,125 @@
+@name MW19 Tactical Infiltration
+@outputs LandSoundOk Rope Wait Leave
+@persist Wait LandSoundOk Rope [Ent1 Ent2]:entity Leave A
+@model models/Items/grenadeAmmo.mdl
+interval(60)
+if(first()){
+    holoCreate(1)
+    holoPos(1,entity():pos()+vec(0,0,650))
+    holoAng(1,ang(0,0,0))
+    holoAlpha(1,0)
+    
+    holoCreate(2)
+    holoPos(2,entity():pos()+vec(0,0,0))
+    holoAng(2,ang(0,0,0))
+    holoAlpha(2,0)
+    holoParent(2,1)
+    
+    holoCreate(3)
+    holoPos(3,holoEntity(1):toWorld(vec(-5,-50,-75)))
+    holoAng(3,holoEntity(1):toWorld(ang(0,0,0)))
+    holoModel(3,"models/uh-60.mdl")
+    #holoBodygroup(number index,number bgrp_id,number bgrp_subid)
+    holoBodygroup(3,4,0)
+    holoBodygroup(3,5,1)
+    holoBodygroup(3,6,1)
+    holoBodygroup(3,7,1)
+    holoBodygroup(3,8,0)
+    holoParent(3,1)
+    timer("wait",1000)
+    
+    propSpawnUndo(0)
+    Ent1=propSpawn("models/hunter/plates/plate.mdl",vec(),1)
+    Ent2=propSpawn("models/hunter/plates/plate.mdl",vec(),1)
+    Ent1:setPos(entity():pos()+vec(0,0,0))
+    Ent2:setPos(entity():pos()+vec(0,0,0))
+    Ent1:propNotSolid(1)
+    Ent2:propNotSolid(1)
+    Ent1:propDraw(0)
+    Ent2:propDraw(0)
+    
+    Leave=0
+    holoAlpha(3,0)
+    #rope(index,ent1,vector,ent2,vector,addlength,width,mat,rigid)
+    holoEntity(3):soundPlay("helicopter loop",0,"npc/attack_helicopter/aheli_rotor_loop1.wav")
+    soundVolume("helicopter loop",0)
+}
+if(clk("wait")){
+    Wait=1
+}
+if(changed(owner():isAlive())&owner():isAlive()){
+    timer("respawn",100)
+}
+if(Wait){
+if(clk("respawn")){
+    holoPos(1,entity():pos()+vec(randint(-75,75),randint(-75,75),650))
+    owner():plySetPos(holoEntity(1):toWorld(vec(-10,0,-90)))
+    owner():soundPlay("start",0,"npc/combine_soldier/zipline_clip1.wav")
+    soundVolume("helicopter loop",100)
+    timer("loop",400)
+    LandSoundOk=1
+    Rope=1
+    timer("reset",2300)
+    holoAlpha(3,255)
+}
+if(clk("loop")){
+    owner():soundPlay("loop",0,"npc/combine_soldier/zipline2.wav")
+}
+if(clk("reset")){
+    LandSoundOk=0
+    Rope=0
+    owner():soundPlay("end",0,"npc/combine_soldier/zipline_hitground1.wav")
+    Leave=1
+}
+}
+if(LandSoundOk){
+    owner():plyApplyForce(vec(0,0,-owner():vel():z()*0.115))
+}
+if(changed(Rope)){
+    if(Rope){
+        rope(1,Ent1,vec(),Ent2,vec(),1,2,"cable/rope",0)
+        Ent1:setPos(holoEntity(1):pos())
+        Ent2:setPos(holoEntity(2):pos())
+    }else{
+        Ent1:setPos(entity():pos()+vec(0,0,9000))
+        Ent2:setPos(entity():pos()+vec(0,0,9000))
+    }
+}
+if(Leave){
+    if(!owner():isAlive()){
+        A=0
+        holoAng(3,holoEntity(1):toWorld(ang(0,0,0)))
+        holoPos(3,holoEntity(1):toWorld(vec(-5,-50,-75)))
+        holoAlpha(3,0)
+        Leave=0
+        soundVolume("helicopter loop",0)
+    }
+    if(A<8){
+        Addition=A/10
+    }else{
+        Addition=1
+    }
+    if(A<60){
+        A=A+0.01+Addition
+        if(A*2<45){
+            holoAng(3,holoEntity(1):toWorld(ang(A*2,0,0)))
+        }else{
+            holoAng(3,holoEntity(1):toWorld(ang(45,0,0)))
+            holoAlpha(3,255/(A-20))
+        }
+    }else{
+        holoAlpha(3,0)
+        Leave=0
+        soundVolume("helicopter loop",0)
+    }
+    Move=bezier(holoEntity(1):toWorld(vec(-5,-50,-75)),((holoEntity(1):toWorld(vec(-5,-50,-75))+holoEntity(1):toWorld(vec(7500,-50,200)))/2)+vec(0,0,5000),holoEntity(1):toWorld(vec(7500,-50,200)),A/100)
+    holoPos(3,Move)
+}else{
+    A=0
+    holoAng(3,holoEntity(1):toWorld(ang(0,0,0)))
+    holoPos(3,holoEntity(1):toWorld(vec(-5,-50,-75)))
+}
+#[
+owner():soundPlay("start",0,"npc/combine_soldier/zipline_clip1.wav")
+owner():soundPlay("loop",0,"npc/combine_soldier/zipline2.wav")
+owner():soundPlay("end",0,"npc/combine_soldier/zipline_hitground1.wav")
