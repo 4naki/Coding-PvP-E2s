@@ -143,8 +143,9 @@ if(changed(owner():isOnGround())){
         }
     }
 }
+ParachuteBind=owner():keyPressed("c")
 if(Ready){
-    if(changed(owner():keyPressed("c"))&owner():keyPressed("c")){
+    if(changed(ParachuteBind)&ParachuteBind){
         Parachute=!Parachute
     }
 }
