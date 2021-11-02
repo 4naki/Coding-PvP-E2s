@@ -53,7 +53,7 @@ if(changed(owner():isAlive())&owner():isAlive()){
 if(Wait){
 if(clk("respawn")){
     holoPos(1,entity():pos()+vec(randint(-75,75),randint(-75,75),650))
-    owner():plySetPos(holoEntity(1):toWorld(vec(-10,0,-90)))
+    owner():plySetPos(holoEntity(1):toWorld(vec(-10,0,-70)))
     owner():soundPlay("start",0,"npc/combine_soldier/zipline_clip1.wav")
     soundVolume("helicopter loop",100)
     timer("loop",400)
