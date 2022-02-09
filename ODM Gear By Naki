@@ -47,14 +47,14 @@ if(Left&!Right){
     Pos=LeftPos
 }
 if(Left){
-    holoPos(3,owner():pos()+vec(0,0,0))
-    holoEntity(1):parent():applyForce(((owner():pos()-holoEntity(1):parent():pos()):normalized())*2000*(5+owner():keySprint()))
+    holoPos(3,owner():pos()+vec(0,0,0)+(-owner():right()*25))
+    holoEntity(1):parent():applyForce(((owner():pos()-holoEntity(1):parent():pos()):normalized())*3000*(10+owner():keySprint()))
 }else{
     holoPos(3,vec(0,0,0))
 }
 if(Right){
-    holoPos(4,owner():pos()+vec(0,0,0))
-    holoEntity(2):parent():applyForce(((owner():pos()-holoEntity(2):parent():pos()):normalized())*2000*(5+owner():keySprint()))
+    holoPos(4,owner():pos()+vec(0,0,0)+(owner():right()*25))
+    holoEntity(2):parent():applyForce(((owner():pos()-holoEntity(2):parent():pos()):normalized())*3000*(10+owner():keySprint()))
 }else{
     holoPos(4,vec(0,0,0))
 }
@@ -68,7 +68,7 @@ if(!Right&!Left){
     Pos=vec(0,0,0)
 }
 if(Right|Left){
-    owner():plyApplyForce(((-(owner():pos()-Pos):normalized())*80*(2+owner():keySprint()))-owner():vel()*0.03)
+    owner():plyApplyForce(((-(owner():pos()-Pos):normalized())*100*(1+(owner():keySprint())*2))-owner():vel()*0.005+(0.028*owner():keySprint()))
 }
 LeftPos=holoEntity(1):pos()
 RightPos=holoEntity(2):pos()
