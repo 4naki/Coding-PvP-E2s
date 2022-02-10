@@ -32,14 +32,26 @@ if(first()){
     P2:parentTo(holoEntity(2))
     P3:parentTo(holoEntity(3))
     P4:parentTo(holoEntity(4))
+    
+    vrSetPlayer(owner())
+}
+
+if(vrPlayerInVR(owner())){
+    LeftButton=vrLeftGrab()
+    RightButton=vrRightGrab()
+    ReelIn=vrPrimaryFire()
+}else{
+    LeftButton=owner():keyAttack1()
+    RightButton=owner():keyAttack2()
+    ReelIn=owner():keySprint()
 }
 
 if(owner():weapon():type()=="none"){
-if(changed(owner():keyAttack1())&owner():keyAttack1()){
+if(changed(LeftButton)&LeftButton){
     Left=!Left
 }
 
-if(changed(owner():keyAttack2())&owner():keyAttack2()){
+if(changed(RightButton)&RightButton){
     Right=!Right
 }
 }
@@ -48,13 +60,13 @@ if(Left&!Right){
 }
 if(Left){
     holoPos(3,owner():pos()+vec(0,0,0)+(-owner():right()*25))
-    holoEntity(1):parent():applyForce(((owner():pos()-holoEntity(1):parent():pos()):normalized())*3000*(10+owner():keySprint()))
+    holoEntity(1):parent():applyForce(((owner():pos()-holoEntity(1):parent():pos()):normalized())*4000*(1+(ReelIn*4)))
 }else{
     holoPos(3,vec(0,0,0))
 }
 if(Right){
     holoPos(4,owner():pos()+vec(0,0,0)+(owner():right()*25))
-    holoEntity(2):parent():applyForce(((owner():pos()-holoEntity(2):parent():pos()):normalized())*3000*(10+owner():keySprint()))
+    holoEntity(2):parent():applyForce(((owner():pos()-holoEntity(2):parent():pos()):normalized())*4000*(1+(ReelIn*4)))
 }else{
     holoPos(4,vec(0,0,0))
 }
@@ -68,7 +80,7 @@ if(!Right&!Left){
     Pos=vec(0,0,0)
 }
 if(Right|Left){
-    owner():plyApplyForce(((-(owner():pos()-Pos):normalized())*100*(1+(owner():keySprint())*2))-owner():vel()*0.005+(0.028*owner():keySprint()))
+    owner():plyApplyForce(((-(owner():pos()-Pos):normalized())*100*(1+(ReelIn*1.5)))-owner():vel()*0.005+(0.028*ReelIn))
 }
 LeftPos=holoEntity(1):pos()
 RightPos=holoEntity(2):pos()
