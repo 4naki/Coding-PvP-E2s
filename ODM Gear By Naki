@@ -46,7 +46,7 @@ if(first()){
     Player=owner()
     
     holoCreate(6)
-    holoPos(6,Player:toWorld(vec(0,0,-35/2)))
+    holoPos(6,Player:toWorld(vec(0,0,35))) #def 35, -35/2 can fix it if it isn't spawning correctly
     holoAng(6,Player:toWorld(ang(0,0,0)))
     holoAlpha(6,0)
     
