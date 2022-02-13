@@ -33,7 +33,13 @@ if(first()){
     P3:parentTo(holoEntity(3))
     P4:parentTo(holoEntity(4))
     
+    holoCreate(5)
+    holoPos(5,owner():pos())
+    holoAlpha(5,0)
+    holoParent(5,owner())
+    
     vrSetPlayer(owner())
+    owner():soundPlay("gas",0,"d1_town.GasJet")
 }
 
 if(vrPlayerInVR(owner())){
@@ -50,10 +56,38 @@ if(owner():weapon():type()=="none"){
 if(changed(LeftButton)&LeftButton){
     Left=!Left
 }
-
 if(changed(RightButton)&RightButton){
     Right=!Right
 }
+}
+if(ReelIn){
+    particleGravity(vec(0))
+    particleSetDuration(2)
+    particleSetStartSize(15)
+    particleSetEndSize(8)
+    particleSetStartAlpha(255)
+    particleSetEndAlpha(0)
+    particleSetPosition(owner():pos()+vec(0,0,45))
+    particleSetVelocity(-owner():eye()*1)
+    particleSetMaterial("particles/smokey")
+    particleCollision(0)
+    particleCreate()
+}
+if(changed(Right)){
+    if(Right){
+        holoEntity(5):soundPlay("fire",0,"weapons/alyx_gun/alyx_gun_fire5.wav")
+        holoEntity(5):soundPlay("hook",0.8,"weapons/tripwire/ropeshoot.wav")
+    }else{
+        holoEntity(5):soundPlay("unhook",0,"npc/roller/blade_in.wav")
+    }
+}
+if(changed(Left)){
+    if(Left){
+        holoEntity(5):soundPlay("fire",0,"weapons/alyx_gun/alyx_gun_fire5.wav")
+        holoEntity(5):soundPlay("hook",0.8,"weapons/tripwire/ropeshoot.wav")
+    }else{
+        holoEntity(5):soundPlay("unhook",0,"npc/roller/blade_in.wav")
+    }
 }
 if(Left&!Right){
     Pos=LeftPos
@@ -79,9 +113,14 @@ if(Right&Left){
 if(!Right&!Left){
     Pos=vec(0,0,0)
 }
-if(Right|Left){
-    owner():plyApplyForce(((-(owner():pos()-Pos):normalized())*100*(1+(ReelIn*1.5)))-owner():vel()*0.005+(0.028*ReelIn))
-}
+soundVolume("gas",1*ReelIn)
+owner():plyApplyForce(
+((((-(owner():pos()-Pos):normalized())*100*(1+(ReelIn*1.5))))*(Left|Right))+
+(((-owner():right()*(owner():keyLeft()-owner():keyRight()))+
+(owner():forward()*(owner():keyForward()-owner():keyBack()))+
+(owner():up()*(owner():keyJump()-owner():keyDuck())))*150*ReelIn)-
+owner():vel()*0.005+(0.028*ReelIn))
+
 LeftPos=holoEntity(1):pos()
 RightPos=holoEntity(2):pos()
 
