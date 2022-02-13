@@ -1,5 +1,5 @@
 @name ODM Gear By Naki
-@persist Left Right [LeftPos RightPos Pos]:vector
+@persist Left Right [LeftPos RightPos Pos]:vector Player:entity
 @trigger none
 runOnKeys(owner(),1)
 interval(50)
@@ -40,7 +40,426 @@ if(first()){
     
     vrSetPlayer(owner())
     owner():soundPlay("gas",0,"d1_town.GasJet")
+
+    Size=0.9
+    
+    Player=owner()
+    
+    holoCreate(6)
+    holoPos(6,Player:toWorld(vec(0,0,-35/2)))
+    holoAng(6,Player:toWorld(ang(0,0,0)))
+    holoAlpha(6,0)
+    
+    holoCreate(7)
+    holoPos(7,holoEntity(6):toWorld(vec(0,-10,-2)))
+    holoAng(7,holoEntity(6):toWorld(ang(-10,-2,-2)))
+    holoAlpha(7,0)
+    
+    holoCreate(8)
+    holoPos(8,holoEntity(6):toWorld(vec(0,10,-2)))
+    holoAng(8,holoEntity(6):toWorld(ang(-10,2,2)))
+    holoAlpha(8,0)
+    
+    holoCreate(9)
+    holoPos(9,holoEntity(7):toWorld(vec(-10.1,0,-1.5)*Size))
+    holoAng(9,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(9,vec(6.35,0.8,1.3)*Size)
+    holoModel(9,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(9,"models/debug/debugwhite")
+    holoColor(9,vec(125,126,120))
+    
+    holoCreate(10)
+    holoPos(10,holoEntity(8):toWorld(vec(-10.1,0,-1.5)*Size))
+    holoAng(10,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(10,vec(6.35,0.8,1.3)*Size)
+    holoModel(10,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(10,"models/debug/debugwhite")
+    holoColor(10,vec(125,126,120))
+    
+    holoCreate(11)
+    holoPos(11,holoEntity(7):toWorld(vec(-12.7,0,4.4)*Size))
+    holoAng(11,holoEntity(7):toWorld(ang(0,90,90)))
+    
+    holoScale(11,vec(0.5,0.5,0.925)*Size)
+    holoModel(11,"models/props_junk/propane_tank001a.mdl")
+    holoMaterial(11,"models/shiny")
+    holoColor(11,vec(215,216,213)*0.85)
+    
+    holoCreate(12)
+    holoPos(12,holoEntity(8):toWorld(vec(-12.7,0,4.4)*Size))
+    holoAng(12,holoEntity(8):toWorld(ang(0,90,90)))
+    
+    holoScale(12,vec(0.5,0.5,0.925)*Size)
+    holoModel(12,"models/props_junk/propane_tank001a.mdl")
+    holoMaterial(12,"models/shiny")
+    holoColor(12,vec(215,216,213)*0.85)
+    
+    holoCreate(13)
+    holoPos(13,holoEntity(7):toWorld(vec(-25,0,0.55)*Size))
+    holoAng(13,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(13,vec(0.35,0.85,2.05)*Size)
+    holoModel(13,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(13,"models/debug/debugwhite")
+    holoColor(13,vec(75))
+    
+    holoCreate(14)
+    holoPos(14,holoEntity(8):toWorld(vec(-25,0,0.55)*Size))
+    holoAng(14,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(14,vec(0.35,0.85,2.05)*Size)
+    holoModel(14,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(14,"models/debug/debugwhite")
+    holoColor(14,vec(75))
+    
+    holoCreate(15)
+    holoPos(15,holoEntity(7):toWorld(vec(-9.5,0,0.55)*Size))
+    holoAng(15,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(15,vec(0.35,0.85,2.05)*Size)
+    holoModel(15,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(15,"models/debug/debugwhite")
+    holoColor(15,vec(75))
+    
+    holoCreate(16)
+    holoPos(16,holoEntity(8):toWorld(vec(-9.5,0,0.55)*Size))
+    holoAng(16,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(16,vec(0.35,0.85,2.05)*Size)
+    holoModel(16,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(16,"models/debug/debugwhite")
+    holoColor(16,vec(75))
+    
+    holoCreate(17)
+    holoPos(17,holoEntity(7):toWorld(vec(3,0,-1.5)*Size))
+    holoAng(17,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(17,vec(0.35,0.85,1.35)*Size)
+    holoModel(17,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(17,"models/debug/debugwhite")
+    holoColor(17,vec(75))
+    
+    holoCreate(18)
+    holoPos(18,holoEntity(8):toWorld(vec(3,0,-1.5)*Size))
+    holoAng(18,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(18,vec(0.35,0.85,1.35)*Size)
+    holoModel(18,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(18,"models/debug/debugwhite")
+    holoColor(18,vec(75))
+    
+    holoCreate(19)
+    holoPos(19,holoEntity(7):toWorld(vec(3,0,4.4)*Size))
+    holoAng(19,holoEntity(7):toWorld(ang(90,0,0)))
+    
+    holoScale(19,vec(0.45,0.45,1)*Size)
+    holoModel(19,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(19,"models/debug/debugwhite")
+    holoColor(19,vec(75))
+    
+    holoCreate(20)
+    holoPos(20,holoEntity(8):toWorld(vec(3,0,4.4)*Size))
+    holoAng(20,holoEntity(8):toWorld(ang(90,0,0)))
+    
+    holoScale(20,vec(0.45,0.45,1)*Size)
+    holoModel(20,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(20,"models/debug/debugwhite")
+    holoColor(20,vec(75))
+    
+    holoCreate(21)
+    holoPos(21,holoEntity(7):toWorld(vec(3,0,2.5)*Size))
+    holoAng(21,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(21,vec(0.25,0.25,1)*Size)
+    holoModel(21,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(21,"models/debug/debugwhite")
+    holoColor(21,vec(75))
+    
+    holoCreate(22)
+    holoPos(22,holoEntity(8):toWorld(vec(3,0,2.5)*Size))
+    holoAng(22,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(22,vec(0.25,0.25,1)*Size)
+    holoModel(22,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(22,"models/debug/debugwhite")
+    holoColor(22,vec(75))
+    
+    holoCreate(23)
+    holoPos(23,holoEntity(7):toWorld(vec(-3,0,-2)*Size))
+    holoAng(23,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(23,vec(2,0.825,0.27)*Size)
+    holoModel(23,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(23,"models/debug/debugwhite")
+    holoColor(23,vec(75))
+    
+    holoCreate(24)
+    holoPos(24,holoEntity(8):toWorld(vec(-3,0,-2)*Size))
+    holoAng(24,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(24,vec(2,0.825,0.27)*Size)
+    holoModel(24,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(24,"models/debug/debugwhite")
+    holoColor(24,vec(75))
+    
+    holoCreate(25)
+    holoPos(25,holoEntity(7):toWorld(vec(4,0,5)*Size))
+    holoAng(25,holoEntity(7):toWorld(ang(90,0,90)))
+    
+    holoScale(25,vec(0.4,0.4,1.9)*Size)
+    holoModel(25,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(25,"models/debug/debugwhite")
+    holoColor(25,vec(75))
+    
+    holoCreate(26)
+    holoPos(26,holoEntity(8):toWorld(vec(4,0,5)*Size))
+    holoAng(26,holoEntity(8):toWorld(ang(90,0,90)))
+    
+    holoScale(26,vec(0.4,0.4,1.9)*Size)
+    holoModel(26,"models/sprops/cylinders/size_3/cylinder_6x3.mdl")
+    holoMaterial(26,"models/debug/debugwhite")
+    holoColor(26,vec(75))
+    
+    holoCreate(42)
+    holoPos(42,holoEntity(7):toWorld(vec(-16,0.2,-1.8)*Size))
+    holoAng(42,holoEntity(7):toWorld(ang(0,0,0)))
+    
+    holoScale(42,vec(2,0.775,0.27)*Size)
+    holoModel(42,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(42,"models/debug/debugwhite")
+    holoColor(42,vec(0))
+    
+    holoCreate(43)
+    holoPos(43,holoEntity(8):toWorld(vec(-16,-0.2,-1.8)*Size))
+    holoAng(43,holoEntity(8):toWorld(ang(0,0,0)))
+    
+    holoScale(43,vec(2,0.775,0.27)*Size)
+    holoModel(43,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(43,"models/debug/debugwhite")
+    holoColor(43,vec(0))
+    
+    
+    
+    #hook launchers
+    
+    holoCreate(27)
+    holoPos(27,holoEntity(6):toWorld(vec(-3,0,7)))
+    holoAng(27,holoEntity(6):toWorld(ang(0,90,-93)))
+    
+    holoScale(27,vec(0.25,0.4,0.18))
+    holoModel(27,"models/sprops/geometry/hring_72.mdl")
+    holoMaterial(27,"models/debug/debugwhite")
+    holoColor(27,vec(75))
+    
+    holoCreate(28)
+    holoPos(28,holoEntity(27):toWorld(vec(-8.5,-0.3,-5.5)))
+    holoAng(28,holoEntity(27):toWorld(ang(0,0,0)))
+    
+    holoScale(28,vec(0.25,0.45,0.7))
+    holoModel(28,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(28,"models/debug/debugwhite")
+    holoColor(28,vec(125,126,120))
+    
+    holoCreate(29)
+    holoPos(29,holoEntity(27):toWorld(vec(8.5,-0.3,-5.5)))
+    holoAng(29,holoEntity(27):toWorld(ang(0,0,0)))
+    
+    holoScale(29,vec(0.25,0.45,0.7))
+    holoModel(29,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(29,"models/debug/debugwhite")
+    holoColor(29,vec(125,126,120))
+    
+    holoCreate(46)
+    holoPos(46,holoEntity(28):toWorld(vec(0,-1.3,-0.9)))
+    holoAng(46,holoEntity(28):toWorld(ang(0,0,0)))
+    
+    holoScale(46,vec(0.5,0.5,1))
+    holoModel(46,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(46,"models/debug/debugwhite")
+    holoColor(46,vec(125,126,120))
+    
+    holoCreate(47)
+    holoPos(47,holoEntity(29):toWorld(vec(0,-1.3,-0.9)))
+    holoAng(47,holoEntity(29):toWorld(ang(0,0,0)))
+    
+    holoScale(47,vec(0.5,0.5,1))
+    holoModel(47,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(47,"models/debug/debugwhite")
+    holoColor(47,vec(125,126,120))
+    
+    holoCreate(48)
+    holoPos(48,holoEntity(28):toWorld(vec(0,-0.4,-2.25)))
+    holoAng(48,holoEntity(28):toWorld(ang(0,0,-35)))
+    
+    holoScale(48,vec(0.5,0.5,0.5))
+    holoModel(48,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(48,"models/debug/debugwhite")
+    holoColor(48,vec(125,126,120))
+    
+    holoCreate(49)
+    holoPos(49,holoEntity(29):toWorld(vec(0,-0.4,-2.25)))
+    holoAng(49,holoEntity(29):toWorld(ang(0,0,-35)))
+    
+    holoScale(49,vec(0.5,0.5,0.5))
+    holoModel(49,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(49,"models/debug/debugwhite")
+    holoColor(49,vec(125,126,120))
+    
+    holoCreate(50)
+    holoPos(50,holoEntity(28):toWorld(vec(0,-1.3,-3)))
+    holoAng(50,holoEntity(28):toWorld(ang(0,0,0)))
+    
+    holoScale(50,vec(0.3,0.3,0.31))
+    holoModel(50,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(50,"models/debug/debugwhite")
+    holoColor(50,vec(0))
+    
+    holoCreate(51)
+    holoPos(51,holoEntity(29):toWorld(vec(0,-1.3,-3)))
+    holoAng(51,holoEntity(29):toWorld(ang(0,0,0)))
+    
+    holoScale(51,vec(0.3,0.3,0.31))
+    holoModel(51,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoMaterial(51,"models/debug/debugwhite")
+    holoColor(51,vec(0))
+    
+    
+    
+    #back gas thing
+    
+    holoCreate(30)
+    holoPos(30,holoEntity(6):toWorld(vec(-6,0,8.5)))
+    holoAng(30,holoEntity(6):toWorld(ang(-5,0,0)))
+    holoAlpha(30,0)
+    
+    holoCreate(31)
+    holoPos(31,holoEntity(30):toWorld(vec(-2,0.8,-2)))
+    holoAng(31,holoEntity(30):toWorld(ang(50,0,0)))
+    
+    holoScale(31,vec(0.2,0.22,1))
+    holoModel(31,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(31,"models/shiny")
+    holoColor(31,vec(215,216,213)*0.7)
+    
+    holoCreate(32)
+    holoPos(32,holoEntity(30):toWorld(vec(-2,-0.8,-2)))
+    holoAng(32,holoEntity(30):toWorld(ang(50,0,0)))
+    
+    holoScale(32,vec(0.2,0.22,1))
+    holoModel(32,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(32,"models/shiny")
+    holoColor(32,vec(215,216,213)*0.7)
+    
+    holoCreate(33)
+    holoPos(33,holoEntity(30):toWorld(vec(-1.5,0,0.25)))
+    holoAng(33,holoEntity(30):toWorld(ang(140,0,90)))
+    
+    holoScale(33,vec(0.4,0.25,0.4))
+    holoModel(33,"models/sprops/geometry/fdisc_12.mdl")
+    holoMaterial(33,"models/debug/debugwhite")
+    holoColor(33,vec(125,126,120))
+    
+    holoCreate(34)
+    holoPos(34,holoEntity(33):toWorld(vec(0,-0.5,0)))
+    holoAng(34,holoEntity(33):toWorld(ang(0,0,0)))
+    
+    holoScale(34,vec(0.35,0.7,0.35))
+    holoModel(34,"models/sprops/geometry/fdisc_12.mdl")
+    holoMaterial(34,"models/debug/debugwhite")
+    holoColor(34,vec(125,126,120))
+    
+    holoCreate(35)
+    holoPos(35,holoEntity(30):toWorld(vec(-3,-7,0.9)))
+    holoAng(35,holoEntity(30):toWorld(ang(0,-20,-25)))
+    
+    holoScale(35,vec(0.5,0.6,0.5))
+    holoModel(35,"models/sprops/geometry/fdisc_12.mdl")
+    holoMaterial(35,"models/debug/debugwhite")
+    holoColor(35,vec(125,126,120))
+    
+    holoCreate(36)
+    holoPos(36,holoEntity(30):toWorld(vec(-3,7,0.9)))
+    holoAng(36,holoEntity(30):toWorld(ang(0,20,25)))
+    
+    holoScale(36,vec(0.5,0.6,0.5))
+    holoModel(36,"models/sprops/geometry/fdisc_12.mdl")
+    holoMaterial(36,"models/debug/debugwhite")
+    holoColor(36,vec(125,126,120))
+    
+    holoCreate(37)
+    holoPos(37,holoEntity(35):toWorld(vec(0,4,0)))
+    holoAng(37,holoEntity(35):toWorld(ang(0,0,-90)))
+    
+    holoScale(37,vec(0.2,0.2,0.5))
+    holoModel(37,"models/sprops/misc/fittings/cred_12_9_tall.mdl")
+    holoMaterial(37,"models/debug/debugwhite")
+    holoColor(37,vec(75))
+    
+    holoCreate(38)
+    holoPos(38,holoEntity(35):toWorld(vec(0,0.9,0)))
+    holoAng(38,holoEntity(35):toWorld(ang(0,0,-90)))
+
+    holoScale(38,vec(0.9,0.9,0.6))
+    holoModel(38,"models/sprops/misc/cones/size_0/cone_6x6.mdl")
+    holoMaterial(38,"models/debug/debugwhite")
+    holoColor(38,vec(75))
+    
+    holoCreate(39)
+    holoPos(39,holoEntity(36):toWorld(vec(0,-4,0)))
+    holoAng(39,holoEntity(36):toWorld(ang(0,0,90)))
+    
+    holoScale(39,vec(0.2,0.2,0.5))
+    holoModel(39,"models/sprops/misc/fittings/cred_12_9_tall.mdl")
+    holoMaterial(39,"models/debug/debugwhite")
+    holoColor(39,vec(75))
+    
+    holoCreate(40)
+    holoPos(40,holoEntity(36):toWorld(vec(0,-0.9,0)))
+    holoAng(40,holoEntity(36):toWorld(ang(0,0,90)))
+    
+    holoScale(40,vec(0.9,0.9,0.6))
+    holoModel(40,"models/sprops/misc/cones/size_0/cone_6x6.mdl")
+    holoMaterial(40,"models/debug/debugwhite")
+    holoColor(40,vec(75))
+    
+    holoCreate(41)
+    holoPos(41,holoEntity(30):toWorld(vec(-3,0,-1)))
+    holoAng(41,holoEntity(30):toWorld(ang(50,0,0)))
+    
+    holoScale(41,vec(0.06,0.16,0.45))
+    holoModel(41,"models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+    holoMaterial(41,"models/debug/debugwhite")
+    holoColor(41,vec(125,126,120))
+    
+    #belts
+    
+    holoCreate(44)
+    holoPos(44,holoEntity(6):toWorld(vec(-9.6,-3.85,-0.1)))
+    holoAng(44,holoEntity(6):toWorld(ang(25,-1,-20)))
+    
+    holoScale(44,vec(0.4,0.1,0.9))
+    holoModel(44,"models/sprops/misc/tubes_thin/size_4/t_q_tube_48x6.mdl")
+    holoMaterial(44,"models/debug/debugwhite")
+    holoColor(44,vec(35))
+    
+    holoCreate(45)
+    holoPos(45,holoEntity(6):toWorld(vec(-9.6,3.85,-0.1)))
+    holoAng(45,holoEntity(6):toWorld(ang(25,1,20)))
+    
+    holoScale(45,vec(0.4,0.1,0.9))
+    holoModel(45,"models/sprops/misc/tubes_thin/size_4/t_q_tube_48x6.mdl")
+    holoMaterial(45,"models/debug/debugwhite")
+    holoColor(45,vec(35))
+    
+    holoParentAttachment(6,owner(),"chest")
+    
+    for(I=7,51){
+        holoParent(I,6)
+    }
 }
+
 
 if(vrPlayerInVR(owner())){
     LeftButton=vrLeftGrab()
